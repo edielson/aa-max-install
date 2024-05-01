@@ -56,7 +56,6 @@ frontend_update() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${empresa_atualizar}
-  pm2 stop ${empresa_atualizar}-frontend
   git fetch
   git pull
   cd /home/deploy/${empresa_atualizar}/frontend
@@ -126,8 +125,8 @@ server {
   root /home/deploy/${instancia_add}/frontend/build;
   index index.html index.htm index.nginx-debian.html;
 
-location / {
-      try_files \$uri /index.html;
+  location / {
+    try_files $uri $uri/ /index.html;
   }
 }
 END
