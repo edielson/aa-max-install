@@ -125,19 +125,6 @@ server {
   root /home/deploy/${instancia_add}/frontend/build;
   index index.html index.htm index.nginx-debian.html;
 
-  listen 443 ssl; # managed by Certbot
-
-  # RSA certificate
-  ssl_certificate /etc/letsencrypt/live/${frontend_hostname}/fullchain.pem; # managed by Certbot
-  ssl_certificate_key /etc/letsencrypt/live/${frontend_hostname}/privkey.pem; # managed by Certbot
-
-  include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-
-  # Redirect non-https traffic to https
-  if ($scheme != "https") {
-    return 301 https://$host$request_uri;
-  } # managed by Certbot
-
   location / {
     try_files \$uri $uri/ /index.html;
   }
