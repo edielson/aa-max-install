@@ -231,7 +231,7 @@ server {
   index index.html index.htm index.nginx-debian.html;
 
   location / {
-      try_files \$uri \$uri/ = 404;
+    try_files \$uri $uri /index.html;
   }
 }
 END
